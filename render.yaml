@@ -1,0 +1,22 @@
+# render.yaml — Konfigurasi deployment ke Render.com
+# Taruh file ini di root project, Render.com akan auto-detect
+# Docs: https://render.com/docs/render-yaml
+
+services:
+  - type: web
+    name: face-recognition-service
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --timeout 120 --bind 0.0.0.0:$PORT
+    # Free tier: 1 worker cukup untuk 50-200 karyawan
+    # Timeout 120s: dlib perlu waktu load model pertama kali
+
+    envVars:
+      - key: API_SECRET
+        generateValue: true          # Render.com auto-generate secret key
+      - key: FACE_DISTANCE_THRESHOLD
+        value: "0.5"
+      - key: BLUR_THRESHOLD
+        value: "80.0"
+      - key: PYTHON_VERSION
+        value: "3.11.0"

@@ -1,0 +1,15 @@
+# Core
+flask==3.0.3
+gunicorn==22.0.0
+
+# Face Recognition (dlib-based)
+# CATATAN: dlib butuh cmake saat build, Render.com sudah support ini
+face-recognition==1.3.0
+face-recognition-models==0.3.0
+
+# Image Processing
+opencv-python-headless==4.9.0.80
+numpy==1.26.4
+
+# Pillow (opsional, fallback image handling)
+Pillow==10.3.0
